@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1591571375 source:c:\users\david\documents\dev\brickracing\main.cpp
+	"sl.h"
+	<stdlib.h>
+	<stdio.h>
+
+1591570540 c:\users\david\documents\dev\brickracing\include\sl.h
+

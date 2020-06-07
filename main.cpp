@@ -2,7 +2,7 @@
 
 /*
  *   This classic game uses http://www.libsigil.com/ (v0.9.0)
- *   and https://fontlibrary.org/en/font/code-new-roman
+ *   and https://www.dafont.com/press-start-2p.font
  *   Compiles on Code::Blocks 17.12 with MinGW32
  */
 
@@ -85,9 +85,6 @@ int main(int args, char *argv[])
         DrawLines(RoadScrollY);
         DrawLevel(GameLevel, font);
 
-        //GameScore = (0 - EnemieScrollY);
-        //DrawScore(GameScore);
-
         // Draw enemy card and check for collision detection
         if(DrawEnemiesWithCD(Enemies, EnemieScrollY, PlayerX, PlayerY)){
 
@@ -101,18 +98,16 @@ int main(int args, char *argv[])
             return 1;
 
         }
-
         // draw everything
         slRender();
     }
 
-    slClose();// close the window and shut down SIGIL
+    slClose();// close the window and shutdown SIGIL
     return 0;
 }
 
 
 void DrawCar(int X, int Y){
-
     // Call DrawSingleBrick 12 times to draw a car
     bool Car[4][3] = {{false, true, false},
                      {true, true, true},
@@ -126,9 +121,7 @@ void DrawCar(int X, int Y){
             }
         }
     }
-
     return;
-
 }
 
 void DrawLines(int Pos){
@@ -156,7 +149,6 @@ void DrawSingleBrick(int X, int Y){
 
 
 void GetInput(int &X, int &Y, double &GameSpeed){
-
     if(slGetKey(SL_KEY_UP) && GameSpeed == 60)
     {
         GameSpeed+=60;
@@ -165,7 +157,6 @@ void GetInput(int &X, int &Y, double &GameSpeed){
     {
         GameSpeed-=60;
     }
-
 
     if(slGetKey(SL_KEY_LEFT) && X > 270){
         X-=80;
@@ -180,9 +171,7 @@ void GetInput(int &X, int &Y, double &GameSpeed){
 
 // Draw other cars and check for collisions
 bool DrawEnemiesWithCD(bool Enemies[], int Pos, int PlayerX, int PlayerY){
-
     int EnemyX = 0; int EnemyY = 0;
-
     for(int i = 0; i < 19; i++){
         if(Enemies[i]==true){ // Draw car to the left
 
@@ -193,7 +182,6 @@ bool DrawEnemiesWithCD(bool Enemies[], int Pos, int PlayerX, int PlayerY){
             if( PlayerX==EnemyX && EnemyY<140 && EnemyY>60 ){
                return true;
             }
-
         }
 
         if(Enemies[i]==false){ // Draw car to the right
@@ -205,33 +193,21 @@ bool DrawEnemiesWithCD(bool Enemies[], int Pos, int PlayerX, int PlayerY){
             if( PlayerX==EnemyX && EnemyY<140 && EnemyY>60 ){
                return true;
             }
-
         }
     }
-
     return false;
 }
 
 
-// https://fontlibrary.org/en/font/code-new-roman
 void GameOver(int font){
-	//int font;
-	//font = slLoadFont("../ttf/PressStart2P.ttf");
 	slSetFont(font, 18);
-
-    // print the title out
-    //slSetTextAlign(SL_ALIGN_CENTER);
-   // slSetFontSize(14);
     slText(200, 240, "[ Game Over ]");
     slRender();
-
     return;
 }
 
 
 void Intro(int font){
-	//int font;
-	//font = slLoadFont("../ttf/PressStart2P.ttf");
 	slSetForeColor(0.8, 0.8, 0.0, 0.8);
     while(!slShouldClose() && !slGetKey(SL_KEY_ENTER)){
         slSetFont(font, 18);
@@ -244,20 +220,11 @@ void Intro(int font){
 }
 
 void DrawLevel(int Level, int font){
-	//int font;
-	//font = slLoadFont("../ttf/PressStart2P.ttf");
 	slSetFont(font, 12);
-
-    // print the title out
-    //slSetTextAlign(SL_ALIGN_CENTER);
-   // slSetFontSize(14);
     char ScoreText[10];
-    //itoa(Level, ScoreText, 10);
     sprintf(ScoreText, "%d", Level); // Convert int to char
     slText(500, 240, "Level");
     slText(510, 220, ScoreText);
-    //slRender();
-
     return;
 }
 
